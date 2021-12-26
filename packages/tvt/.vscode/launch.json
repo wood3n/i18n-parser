@@ -1,0 +1,14 @@
+{
+  // 本地开发调试程序
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "skipFiles": ["<node_internals>/**"],
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "args": ["${workspaceFolder}/scripts/index.ts"]
+    }
+  ]
+}

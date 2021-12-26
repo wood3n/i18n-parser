@@ -1,0 +1,10 @@
+typings
+es/**/*
+lib/**/*
+node_modules
+_site
+dist/**/*
+build/**/*
+coverage
+examples/**/*
+**/*.d.ts

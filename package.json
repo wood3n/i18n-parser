@@ -1,0 +1,43 @@
+{
+  "name": "sweet-i18n",
+  "version": "1.0.0",
+  "private": "true",
+  "author": "wood3n",
+  "homepage": "https://github.com/wood3n/sweet-i18n",
+  "description": "a nodejs cli that can transform chinese characters automaticly",
+  "keywords": [
+    "nodejs",
+    "cli",
+    "frontend",
+    "i18n",
+    "react",
+    "vue"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "cd packages/tvt && node ./config/esbuild.dev.config",
+    "build": "cd packages/tvt && node ./config/esbuild.pro.config",
+    "vs": "cd packages/vs-tvt",
+    "play": "cd packages/playground && pnpm run dev",
+    "play:build": "cd packages/playground && pnpm run build",
+    "prepare": "husky install"
+  },
+  "engines": {
+    "node": ">= 16.13"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.4",
+    "typescript": "^4.5.4"
+  },
+  "lint-staged": {
+    "packages/**/*.{ts,tsx}": "eslint --fix"
+  }
+}
