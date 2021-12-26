@@ -23,12 +23,12 @@ yarn global add tvt
 
 使用`tvt`前，需要在命令运行目录的`package.json`下指定以下配置项：
 
-| 配置项       | 类型                | <p wrap="no">必填项</p> | 默认值                | 含义                                                         |
-| ------------ | ------------------- | ----------------------- | --------------------- | ------------------------------------------------------------ |
-| `importPath` | `string`            | 是                      | -                     | 指定在 VUE SFC 中自动中引入的`vue-i18n`对象的相对路径，详细见下文[路径配置](#alias) |
-| `pattern`    | `string`            | 否                      | `"**/*.vue"`          | [`node-glob`](https://github.com/isaacs/node-glob#glob-primer)匹配文件模式字符串 |
-| `ignore`     | `string`|`string[]` | 否                      | `["node_modules/**"]` | [`node-glob`](https://github.com/isaacs/node-glob#options)配置项`ignore` |
-| `output`     | `string`            | 否                      | `"i18n/zh-CN.json"`   | 指定导出的中文 JSON 文件的路径                               |
+| 配置项       | 类型     | <p wrap="no">必填项</p> | 默认值              | 含义                                                                                |
+| ------------ | -------- | ----------------------- | ------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `importPath` | `string` | 是                      | -                   | 指定在 VUE SFC 中自动中引入的`vue-i18n`对象的相对路径，详细见下文[路径配置](#alias) |
+| `pattern`    | `string` | 否                      | `"**/*.vue"`        | [`node-glob`](https://github.com/isaacs/node-glob#glob-primer)匹配文件模式字符串    |
+| `ignore`     | `string` | `string[]`              | 否                  | `["node_modules/**"]`                                                               | [`node-glob`](https://github.com/isaacs/node-glob#options)配置项`ignore` |
+| `output`     | `string` | 否                      | `"i18n/zh-CN.json"` | 指定导出的中文 JSON 文件的路径                                                      |
 
 ```js
 // 默认配置
@@ -44,13 +44,13 @@ const default = {
 `tvt`内部会处理在 VUE 组件的`script`内部的中文字符，为了兼容位于`export default {}` 外部中文字符的情况，采用直接引入`vue-i18n`对象的方式，所以必须指定从`vue-i18n`导出的对象的全局相对路径，建议使用`@`别名的路径解析方式，利用`webpack`的`resolve.alias`配置也十分的简单：
 
 ```js
-const path = require('path');
+const path = require("path");
 
 module.exports = {
   //...
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, './src'),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 };
@@ -68,7 +68,7 @@ module.exports = {
       },
     },
   },
-}
+};
 ```
 
 ## vue-i18n 的拓展
