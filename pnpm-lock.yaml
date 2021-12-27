@@ -6,6 +6,7 @@ importers:
     specifiers:
       '@typescript-eslint/eslint-plugin': ^5.1.0
       '@typescript-eslint/parser': ^5.1.0
+      '@vue/compiler-core': ^3.2.26
       eslint: ^8.5.0
       eslint-config-prettier: ^8.3.0
       eslint-plugin-node: ^11.1.0
@@ -14,6 +15,8 @@ importers:
       husky: ^7.0.4
       lint-staged: ^12.1.4
       typescript: ^4.5.4
+    dependencies:
+      '@vue/compiler-core': 3.2.26
     devDependencies:
       '@typescript-eslint/eslint-plugin': 5.8.0_836011a006f4f5d67178564baf2b6d34
       '@typescript-eslint/parser': 5.8.0_eslint@8.5.0+typescript@4.5.4
