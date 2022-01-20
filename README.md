@@ -1,11 +1,14 @@
-<h1 align="center">tvt</h1>
+<p align="center">
+  <img src="./public/logo.png" height="150">
+</p>
 <p align="center">
   <a href="https://badge.fury.io/js/tvt"><img src="https://badge.fury.io/js/tvt.svg" alt="npm version" height="18"></a>
   <a href="https://github.com/wood3n/tvt/actions"><img src="https://github.com/wood3n/tvt/actions/workflows/ci.yml/badge.svg" alt="ci Status"></a>
 </p>
-<p align="center">
-基于 NodeJS + TypeScript 实现的 CLI 工具，自动提取和转换 VUE 组件中的中文字符。
-</p>
+
+# sweet-i18n
+
+基于 NodeJS + TypeScript 实现的 CLI 工具，自动提取和转换 React, VUE 组件中的中文字符，并生成对应 JSON 文件。
 
 # 使用
 

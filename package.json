@@ -1,12 +1,13 @@
 {
   "name": "sweet-i18n",
-  "version": "1.0.0",
   "private": "true",
   "author": "wood3n",
   "homepage": "https://github.com/wood3n/sweet-i18n",
-  "description": "a nodejs cli that can transform chinese characters automaticly",
+  "description": "a nodejs cli tool that transforms chinese characters automaticly",
   "keywords": [
     "nodejs",
+    "typescript",
+    "esbuild",
     "cli",
     "frontend",
     "i18n",
@@ -15,17 +16,17 @@
   ],
   "license": "MIT",
   "scripts": {
-    "dev": "cd packages/tvt && node ./config/esbuild.dev.config",
-    "build": "cd packages/tvt && node ./config/esbuild.pro.config",
-    "vs": "cd packages/vs-tvt",
-    "play": "cd packages/playground && pnpm run dev",
-    "play:build": "cd packages/playground && pnpm run build",
-    "prepare": "husky install"
+    "dev": "cd packages/sugar18 && node ./config/esbuild.dev.config",
+    "build": "cd packages/sugar18 && node ./config/esbuild.pro.config",
+    "doc": "cd packages/docs && yarn start",
+    "doc:build": "cd packages/docs && yarn build"
   },
-  "engines": {
-    "node": ">= 16.13"
+  "dependencies": {
+    "@algolia/client-search": "^4.12.0",
+    "@vue/compiler-core": "^3.2.26"
   },
   "devDependencies": {
+    "@types/react": "^17.0.38",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
     "eslint": "^8.5.0",
@@ -35,12 +36,10 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.4",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "webpack": "^5.65.0"
   },
   "lint-staged": {
-    "packages/**/*.{ts,tsx}": "eslint --fix"
-  },
-  "dependencies": {
-    "@vue/compiler-core": "^3.2.26"
+    "packages/**/*.{ts,tsx,js}": "eslint --fix"
   }
 }
