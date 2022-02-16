@@ -1,7 +1,11 @@
 import babelTraverse, { Visitor } from "@babel/traverse";
 import * as t from "@babel/types";
 import path from "path";
-import { ElementNode, SimpleExpressionNode } from "@vue/compiler-core";
+import {
+  ElementNode,
+  SimpleExpressionNode,
+  NodeTypes,
+} from "@vue/compiler-core";
 import { parseVue, parseJS } from "./parse";
 import {
   generateTemplate,
@@ -18,7 +22,7 @@ function createDirectiveAttr(type: string, name: string, value: string) {
   if (type === "on") {
     return {
       name: "on",
-      type: 7,
+      type: NodeTypes.DIRECTIVE,
       loc: {
         source: `@${name}="${value}"`,
       },
@@ -27,7 +31,7 @@ function createDirectiveAttr(type: string, name: string, value: string) {
 
   return {
     name: "bind",
-    type: 7,
+    type: NodeTypes.DIRECTIVE,
     loc: {
       source: `:${name}="${value}"`,
     },
@@ -36,7 +40,7 @@ function createDirectiveAttr(type: string, name: string, value: string) {
 
 function createInterpolationNode(content: string) {
   return {
-    type: 5,
+    type: NodeTypes.INTERPOLATION,
     loc: {
       source: `{{ ${content} }}`,
     },
@@ -54,12 +58,12 @@ class Transformer {
   result = "";
   // 提取的中文键值对
   locales: Record<string, string> = {};
-  private sourceCode: string;
+  sourceCode: string;
   // 单一的JS文件
-  private filename: string;
-  private fileType: FileType;
-  private importVar = "I18N";
-  private importPath = "";
+  filename: string;
+  fileType: FileType;
+  importVar = "I18N";
+  importPath = "";
 
   constructor({ code, locales, importPath, filename }: Options) {
     this.sourceCode = code;
@@ -161,14 +165,14 @@ class Transformer {
      * https://github.com/vuejs/vue-next/issues/4975
      */
     if (
-      ast.type === 1 &&
+      ast.type === NodeTypes.ELEMENT &&
       /^<+?[^>]+\s+(v-pre)[^>]*>+?[\s\S]*<+?\/[\s\S]*>+?$/gm.test(
         ast.loc.source
       )
     ) {
       ast.props = [
         {
-          type: 7,
+          type: NodeTypes.DIRECTIVE,
           name: "pre",
           // @ts-expect-error 类型“{ source: string; }”缺少类型“SourceLocation”中的以下属性: start, endts(2739)
           loc: {
@@ -184,7 +188,7 @@ class Transformer {
       ast.props = ast.props.map((prop) => {
         // vue指令
         if (
-          prop.type === 7 &&
+          prop.type === NodeTypes.DIRECTIVE &&
           hasChineseCharacter((prop.exp as SimpleExpressionNode)?.content)
         ) {
           const jsCode = generateInterpolation(
@@ -197,7 +201,10 @@ class Transformer {
           );
         }
         // 普通属性
-        if (prop.type === 6 && hasChineseCharacter(prop.value?.content)) {
+        if (
+          prop.type === NodeTypes.ATTRIBUTE &&
+          hasChineseCharacter(prop.value?.content)
+        ) {
           const localeKey = this.extractChar(prop.value!.content);
           return createDirectiveAttr("bind", prop.name, `$t('${localeKey}')`);
         }
@@ -209,14 +216,17 @@ class Transformer {
     if (ast.children.length) {
       // @ts-expect-error 类型“{ type: number; loc: { source: string; }; }”缺少类型“TextCallNode”中的以下属性: content, codegenNodets(2322)
       ast.children = ast.children.map((child) => {
-        if (child.type === 2 && hasChineseCharacter(child.content)) {
+        if (
+          child.type === NodeTypes.TEXT &&
+          hasChineseCharacter(child.content)
+        ) {
           const localeKey = this.extractChar(child.content);
           return createInterpolationNode(`$t('${localeKey}')`);
         }
 
         // 插值语法，插值语法的内容包含在child.content内部，如果匹配到中文字符，则进行JS表达式解析并替换
         if (
-          child.type === 5 &&
+          child.type === NodeTypes.INTERPOLATION &&
           hasChineseCharacter((child.content as SimpleExpressionNode)?.content)
         ) {
           const jsCode = generateInterpolation(
@@ -229,7 +239,7 @@ class Transformer {
         }
 
         // 元素
-        if (child.type === 1) {
+        if (child.type === NodeTypes.ELEMENT) {
           return this.transformTemplate(child);
         }
 

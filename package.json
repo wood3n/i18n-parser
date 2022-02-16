@@ -16,8 +16,10 @@
   ],
   "license": "MIT",
   "scripts": {
-    "dev": "cd packages/sugar18 && node ./config/esbuild.dev.config",
-    "build": "cd packages/sugar18 && node ./config/esbuild.pro.config",
+    "build": "cd packages/sugar18 && node esbuild.js",
+    "link": "cd packages/sugar18 && pnpm link --global",
+    "dev:vs": "cd packages/vs-extensions && node esbuild.js --watch",
+    "build:vs": "cd packages/vs-extensions && node esbuild.js",
     "doc": "cd packages/docs && yarn start",
     "doc:build": "cd packages/docs && yarn build"
   },
@@ -36,10 +38,15 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.4",
+    "ts-node": "^10.4.0",
     "typescript": "^4.5.4",
     "webpack": "^5.65.0"
   },
   "lint-staged": {
     "packages/**/*.{ts,tsx,js}": "eslint --fix"
+  },
+  "trust": {
+    "pattern": "./examples/src/**/*.{vue,js}",
+    "importPath": "@/i18n"
   }
 }

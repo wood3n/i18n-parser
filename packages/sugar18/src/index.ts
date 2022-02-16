@@ -13,7 +13,7 @@ import packageJson from "../package.json";
 
   // 读取位于package.json里的配置项
   let options: ConfigOptions = {
-    pattern: "**/*.vue",
+    pattern: "**/*.{vue,js}",
     ignore: ["node_modules/**"],
     output: "i18n/zh-CN.json",
     useUniqKey: false,
@@ -55,7 +55,7 @@ import packageJson from "../package.json";
 
   // 必须指定引入的从vue-i18n导出对象的路径，方便在script内部自动生成import语句
   if (!options.importPath) {
-    logError("Please set importExpression's filepath.");
+    logError("Please set import expression's filepath.");
     process.exit(1);
   }
 
@@ -70,6 +70,7 @@ import packageJson from "../package.json";
     console.log(err);
   }
 
+  const files = glob.sync(options.pattern!, { ignore: options.ignore });
   glob
     .sync(options.pattern!, { ignore: options.ignore })
     .forEach((filename) => {

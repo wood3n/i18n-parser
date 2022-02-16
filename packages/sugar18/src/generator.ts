@@ -36,7 +36,6 @@ export function generateJS(ast: ParseResult<File> | ParseResult<Expression>) {
 
 /**
  * 组合template，script，style
- * TODO:这里需要完善
  */
 export function generateSfc(descriptor: SFCDescriptor) {
   let result = "";

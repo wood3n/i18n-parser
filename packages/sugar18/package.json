@@ -2,18 +2,17 @@
   "name": "sugar18",
   "version": "1.0.0",
   "scripts": {
-    "dev": "node ./config/esbuild.dev.config",
-    "build": "node ./config/esbuild.pro.config"
+    "build": "node esbuild.js"
   },
   "engines": {
-    "node": ">= 12"
+    "node": ">= 14"
   },
   "bin": {
-    "tvt": "./bin/index.js"
+    "trust": "./bin/index.js"
   },
   "files": [
     "bin/**",
-    "dist/**"
+    "lib/**"
   ],
   "devDependencies": {
     "@types/babel__generator": "^7.6.3",
@@ -35,11 +34,7 @@
     "commander": "^8.3.0",
     "glob": "^7.2.0",
     "please-upgrade-node": "^3.2.0",
-    "prettier": "^2.4.1"
-  },
-  "tvt": {
-    "importPath": "@/i18n",
-    "output": "src/i18n/cn.json",
-    "pattern": "examples/vue/src/**/*.{js,vue}"
+    "prettier": "^2.4.1",
+    "ts-node": "^10.4.0"
   }
 }

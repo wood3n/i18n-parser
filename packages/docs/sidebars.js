@@ -16,19 +16,13 @@ const sidebars = {
   tutorialSidebar: [
     {
       type: "category",
-      label: "介绍",
+      label: "开始",
       items: [
         {
           type: "doc",
-          id: "docs/intro",
+          id: "intro",
         },
       ],
-    },
-  ],
-  changelog: [
-    {
-      type: "doc",
-      id: "changelog",
     },
   ],
 };

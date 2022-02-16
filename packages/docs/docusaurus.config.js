@@ -6,7 +6,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "sweet-i18n",
-  tagline: "make i18n translate sweet",
+  tagline: "Make i18n translation fucking easy!!!",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -46,6 +46,9 @@ const config = {
 
       //   indexName: "sweet-i18n",
       // },
+      colorMode: {
+        defaultMode: "dark",
+      },
       navbar: {
         title: "sweet-i18n",
         logo: {
@@ -59,15 +62,14 @@ const config = {
           },
           {
             type: "doc",
-            docId: "docs/intro",
+            docId: "intro",
             position: "right",
             label: "文档",
           },
           {
-            type: "doc",
-            docId: "changelog",
-            position: "right",
+            to: "blog",
             label: "更新日志",
+            position: "right",
           },
           {
             href: "https://github.com/wood3n/sweet-i18n",
@@ -82,6 +84,10 @@ const config = {
         theme: darkCodeTheme,
         darkTheme: darkCodeTheme,
         defaultLanguage: "javascript",
+      },
+      footer: {
+        style: "light",
+        copyright: `Copyright © ${new Date().getFullYear()} sweet-i18n. Built with Docusaurus.`,
       },
     }),
   i18n: {

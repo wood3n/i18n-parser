@@ -1,15 +1,30 @@
 {
-  // 使用 IntelliSense 了解相关属性。
-  // 悬停以查看现有属性的描述。
-  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-node",
+      "name": "Debug sugar18",
+      "type": "node",
       "request": "launch",
-      "name": "Launch Program",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}\\packages\\sugar18\\dist"
+      "env": {
+        "NODE_ENV": "development",
+        "TS_NODE_PROJECT": "${workspaceFolder}\\packages\\sugar18\\tsconfig.json"
+      },
+      // "runtimeExecutable": "esno",
+      // "program": "${workspaceFolder}\\packages\\sugar18\\src\\index.ts",
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "args": ["${workspaceFolder}\\packages\\sugar18\\src\\index.ts"]
+    },
+    {
+      "name": "Debug extension",
+      "type": "extensionHost",
+      "request": "launch",
+      // 指定开发调试环境目录，否则找不到package.json的配置
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}\\packages\\vs-extensions"
+      ],
+      "runtimeExecutable": "esno",
+      "program": "${workspaceFolder}\\packages\\vs-extensions\\src\\index.ts"
     }
   ]
 }
