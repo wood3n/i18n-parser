@@ -24,7 +24,8 @@
     "doc:build": "cd packages/docs && yarn build",
     "doc:serve": "cd packages/docs && yarn serve",
     "serve": "cd packages/coop-backend && pnpm run start",
-    "postgres": "cd packages/coop-backend && pnpm postgres"
+    "postgres": "cd packages/coop-backend && pnpm postgres",
+    "publish": "zx scripts/publish.js"
   },
   "dependencies": {
     "@algolia/client-search": "^4.12.0",

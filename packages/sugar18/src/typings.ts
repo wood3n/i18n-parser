@@ -43,7 +43,7 @@ export interface CommanderOptions {
 /**
  * vue ast节点类型
  */
-export enum NodeTypes {
+export const enum NodeTypes {
   ROOT = 0,
   ELEMENT = 1,
   TEXT = 2,

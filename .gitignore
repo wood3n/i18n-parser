@@ -1,6 +1,7 @@
 # compiled output
 dist
 build
+lib
 node_modules
 
 # Logs
@@ -36,3 +37,5 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# example directory
+examples

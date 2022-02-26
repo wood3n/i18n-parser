@@ -24,11 +24,11 @@ import packageJson from "../package.json";
       path.resolve(process.cwd(), "package.json"),
       "utf8"
     );
-    const config: { tvt: ConfigOptions } = JSON.parse(localPackageJson);
-    if (config.tvt) {
+    const config: { sugar18: ConfigOptions } = JSON.parse(localPackageJson);
+    if (config.sugar18) {
       options = {
         ...options,
-        ...config.tvt,
+        ...config.sugar18,
       };
     }
   } catch (err) {
@@ -38,17 +38,18 @@ import packageJson from "../package.json";
 
   const program = new Command();
   program
+    .name("sugar18")
     .version(packageJson.version)
-    .name("🤖tvt🤖")
+    .command("trust")
     .option("-i --import", "importExpression's filepath")
     .option("-p --output", "json output filepath")
-    .action((cli) => {
-      if (cli.output) {
-        options.output = cli.output;
+    .action((_, options) => {
+      if (options.output) {
+        options.output = options.output;
       }
 
-      if (cli.import) {
-        options.importPath = cli.import;
+      if (options.import) {
+        options.importPath = options.import;
       }
     })
     .parse(process.argv);
@@ -61,16 +62,13 @@ import packageJson from "../package.json";
 
   let locales = {};
   const outputJSONPath = path.resolve(process.cwd(), options.output!);
-  try {
+  if (fs.existsSync(outputJSONPath)) {
     const content = fs.readFileSync(outputJSONPath, "utf8");
     if (content) {
       locales = JSON.parse(content);
     }
-  } catch (err) {
-    console.log(err);
   }
 
-  const files = glob.sync(options.pattern!, { ignore: options.ignore });
   glob
     .sync(options.pattern!, { ignore: options.ignore })
     .forEach((filename) => {
