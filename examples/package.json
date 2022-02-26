@@ -1,7 +1,7 @@
 {
   "name": "examples",
   "private": true,
-  "trust": {
+  "sugar18": {
     "importPath": "@/i18n"
   }
 }

@@ -4,7 +4,7 @@ export default {
   render: () => {
     return (
       <span>
-        {this.$i18n.tExtend('a4118d1cb21c0e092ca7e33c5ee386d1', [test])}
+        {this.$i18n.tExtend('efe4427e425172c1ba18974625600eed', [this.name])}
       </span>
     );
   },
