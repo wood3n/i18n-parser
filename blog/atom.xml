@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://your-docusaurus-test-site.com/blog</id>
+    <title>sweet-i18n Blog</title>
+    <updated>2022-01-30T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://your-docusaurus-test-site.com/blog"/>
+    <subtitle>sweet-i18n Blog</subtitle>
+    <icon>https://your-docusaurus-test-site.com/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[官网更新]]></title>
+        <id>/2022/01/30/更新日志1</id>
+        <link href="https://your-docusaurus-test-site.com/blog/2022/01/30/更新日志1"/>
+        <updated>2022-01-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[官网更新]]></summary>
+        <content type="html"><![CDATA[<h2>官网更新</h2>]]></content>
+        <author>
+            <name>oxygen</name>
+            <uri>https://github.com/wood3n</uri>
+        </author>
+    </entry>
+</feed>

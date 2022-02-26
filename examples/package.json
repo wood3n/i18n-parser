@@ -1,7 +1,0 @@
-{
-  "name": "examples",
-  "private": true,
-  "trust": {
-    "importPath": "@/i18n"
-  }
-}
