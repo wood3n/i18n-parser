@@ -7,21 +7,20 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [15]
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2.0.1
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
         with:
-          version: 6.20.3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
+      - uses: pnpm/action-setup@v2.1.0
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-      - name: Install dependencies
-        run: pnpm install
+          version: 6.0.2
+          run_install: true
 
       - name: Build website
         run: pnpm doc:build
