@@ -21,11 +21,16 @@
     "dev:vs": "cd packages/vs-extensions && node esbuild.js --watch",
     "build:vs": "cd packages/vs-extensions && node esbuild.js",
     "doc": "cd packages/docs && yarn start",
-    "doc:build": "cd packages/docs && yarn build"
+    "doc:build": "cd packages/docs && yarn build",
+    "doc:serve": "cd packages/docs && yarn serve",
+    "serve": "cd packages/coop-backend && pnpm run start",
+    "postgres": "cd packages/coop-backend && pnpm postgres"
   },
   "dependencies": {
     "@algolia/client-search": "^4.12.0",
-    "@vue/compiler-core": "^3.2.26"
+    "@types/node": "^17.0.18",
+    "@vue/compiler-core": "^3.2.26",
+    "cross-env": "^7.0.3"
   },
   "devDependencies": {
     "@types/react": "^17.0.38",
