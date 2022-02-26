@@ -11,7 +11,7 @@ const config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "icodex", // Usually your GitHub org/user name.
+  organizationName: "wood3n", // Usually your GitHub org/user name.
   projectName: "sweet-i18n", // Usually your repo name.
 
   presets: [
