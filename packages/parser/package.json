@@ -1,0 +1,61 @@
+{
+  "name": "parser",
+  "version": "1.0.0",
+  "description": "i18n-parser node cli",
+  "keywords": [
+    "typescript",
+    "frontend",
+    "react",
+    "vue",
+    "i18n",
+    "nodejs"
+  ],
+  "license": "MIT",
+  "author": "wood3n",
+  "type": "module",
+  "main": "bin/index.js",
+  "bin": {
+    "lparse": "./bin/index.js"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "sort": "npx sort-package-json"
+  },
+  "dependencies": {
+    "@babel/generator": "^7.16.0",
+    "@babel/parser": "^7.16.4",
+    "@babel/traverse": "^7.16.3",
+    "@babel/types": "^7.16.0",
+    "@vue/compiler-core": "^3.2.47",
+    "@vue/compiler-sfc": "^3.2.22",
+    "commander": "^8.3.0",
+    "consola": "^2.15.3",
+    "fs-extra": "^11.1.0",
+    "glob": "^7.2.0",
+    "please-upgrade-node": "^3.2.0",
+    "prettier": "^2.4.1",
+    "ts-node": "^10.4.0"
+  },
+  "devDependencies": {
+    "@types/babel__generator": "^7.6.3",
+    "@types/babel__traverse": "^7.14.2",
+    "@types/fs-extra": "^11.0.1",
+    "@types/glob": "^7.2.0",
+    "@types/node": "^18.15.3",
+    "@types/prettier": "^2.4.2",
+    "eslint-plugin-node": "^11.1.0",
+    "typescript": "^4.9.5",
+    "unbuild": "^1.1.2",
+    "vitest": "^0.29.3"
+  },
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}

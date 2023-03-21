@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"sourceMap": true
+	},
+  "include": [
+    ".eslintrc.js",
+    "webpack.config.js",
+    "src"
+  ]
+}
