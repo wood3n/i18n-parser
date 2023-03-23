@@ -1,5 +1,5 @@
 {
-  "name": "vs-extensions",
+  "name": "extension",
   "version": "1.0.0",
   "publisher": "wood3n",
   "repository": {
@@ -7,8 +7,8 @@
     "url": "https://github.com/wood3n/sweet-i18n.git",
     "directory": "packages/vs-extensions"
   },
-  "displayName": "sweet-i18n",
-  "description": "sweet-i18n vscode smart prompt extension",
+  "displayName": "i18n-parser",
+  "description": "i18n-parser vscode prompt extension",
   "engines": {
     "vscode": "^1.63.0"
   },
@@ -20,6 +20,7 @@
   "keywords": [
     "i18n",
     "vue",
+    "react",
     "IntelliSense"
   ],
   "activationEvents": [
