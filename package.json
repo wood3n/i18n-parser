@@ -2,7 +2,9 @@
   "name": "i18n-parser",
   "private": "true",
   "scripts": {
-    "build": "pnpm --filter='./packages/*' run build"
+    "build": "pnpm --filter='./packages/*' run build",
+    "doc": "pnpm --filter='./packages/docs' run start",
+    "ext": "pnpm --filter='./packages/extension' run start"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.54.1",

@@ -4,8 +4,8 @@
   "publisher": "wood3n",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wood3n/sweet-i18n.git",
-    "directory": "packages/vs-extensions"
+    "url": "https://github.com/wood3n/i18n-parser.git",
+    "directory": "packages/extension"
   },
   "displayName": "i18n-parser",
   "description": "i18n-parser vscode prompt extension",
@@ -53,13 +53,17 @@
       }
     ]
   },
-  "main": "./lib/index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "vscode:prepublish": "node esbuild.js",
-    "package": "pnpm vsce package --no-dependencies",
-    "publish": "pnpm vsce publish --no-dependencies",
-    "dev": "node esbuild.js --watch",
-    "build": "node esbuild.js"
+    "vscode:prepublish": "pnpm run package",
+    "compile": "webpack",
+    "start": "webpack --watch",
+    "build": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
     "@types/glob": "^7.1.4",
