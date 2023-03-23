@@ -59,6 +59,7 @@ module.exports = {
   rules: {
     'node/no-unsupported-features/es-syntax': 0,
     'global-require': 0,
+    'consistent-return': 0,
     'no-process-exit': 0,
     'no-param-reassign': 0,
     'class-methods-use-this': 0,

@@ -1,25 +1,60 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import type {
+  ExtensionContext,
+  DiagnosticCollection,
+} from 'vscode';
+import {
+  workspace,
+  languages,
+  Location,
+} from 'vscode';
+import { existsSync, readFileSync } from 'fs';
+import path from 'path';
+import { parse as babelParser } from '@babel/parser';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
-  console.log('Congratulations, your extension "extension" is now active!');
+let diagnosticCollection: DiagnosticCollection;
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
-  const disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
-    // The code you place here will be executed every time your command is executed
-    // Display a message box to the user
-    vscode.window.showInformationMessage('Hello World from i18n-parser!');
-  });
+export function activate(context: ExtensionContext) {
+  const workSpaceFolder = workspace.workspaceFolders?.[0]?.uri?.fsPath ?? '';
+  const configPath: string = workspace.getConfiguration().get('i18n.conf.localePath')
+    ?? 'src/i18n/zh-CN.json';
+  const zhLocalePath = path.resolve(workSpaceFolder, configPath);
+  const zhJSON = JSON.parse(readFileSync(zhLocalePath, 'utf8'));
 
-  context.subscriptions.push(disposable);
+  const disposableHover = languages.registerHoverProvider(
+    [
+      {
+        scheme: 'file',
+        language: 'javascript',
+      },
+      {
+        scheme: 'file',
+        language: 'vue',
+      },
+    ],
+    {
+      provideHover(document, position, token) {
+        // 当前hover的字符串
+        const range = document.getWordRangeAtPosition(position);
+        const key = document.getText(range);
+
+        if (workSpaceFolder) {
+          // 获取文件相对于项目根目录的相对路径，并组成key值
+          const fileRelativePath = path.relative(
+            workSpaceFolder,
+            document.fileName,
+          );
+          const src = fileRelativePath.split(path.sep).join('.');
+
+          const localeValue = zhJSON[src][key];
+          if (localeValue) {
+            return {
+              contents: [localeValue, 'sweet-i18n 提供翻译提示'],
+            };
+          }
+        }
+      },
+    },
+  );
+
+  context.subscriptions.push(disposableHover);
 }
-
-// This method is called when your extension is deactivated
-export function deactivate() {}
