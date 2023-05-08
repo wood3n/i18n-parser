@@ -3,13 +3,14 @@ import fs from 'fs-extra';
 import glob from 'glob';
 import { Command } from 'commander';
 import consola from 'consola';
+import pleaseUpgradeNode from 'please-upgrade-node';
 import Transformer from './transform';
 import type { ConfigOptions } from './typings';
 import packageJson from '../package.json';
 
 (() => {
   // node version must >= 16.13
-  require('please-upgrade-node')(packageJson);
+  pleaseUpgradeNode(packageJson);
 
   // 读取位于package.json里的配置项
   let options: ConfigOptions = {
@@ -24,11 +25,14 @@ import packageJson from '../package.json';
       path.resolve(process.cwd(), 'package.json'),
       'utf8',
     );
-    const config: { sugar18: ConfigOptions } = JSON.parse(localPackageJson);
-    if (config.sugar18) {
+    const packageParse: { config: {
+      sugar18: ConfigOptions
+    } } = JSON.parse(localPackageJson);
+
+    if (packageParse.config.sugar18) {
       options = {
         ...options,
-        ...config.sugar18,
+        ...packageParse.config.sugar18,
       };
     }
   } catch (err) {
