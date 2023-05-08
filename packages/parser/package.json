@@ -1,6 +1,6 @@
 {
-  "name": "parser",
-  "version": "1.0.1",
+  "name": "sugar18",
+  "version": "1.0.6",
   "description": "i18n-parser node cli",
   "keywords": [
     "typescript",
