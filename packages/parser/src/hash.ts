@@ -1,6 +1,6 @@
-const {
+import {
   createHash,
-} = require('node:crypto');
+} from 'node:crypto';
 
 export function generateHash(char: string): string {
   const hash = createHash('md5');
